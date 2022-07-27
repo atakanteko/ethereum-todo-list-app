@@ -2,7 +2,8 @@ import './App.css';
 import { useState, useEffect, useContext } from "react";
 import { Card } from "./Components/Card";
 import { Context} from "./Context";
-
+import Web3 from "web3";
+import { TODO_LIST_ABI, TODO_LIST_ADDRESS } from "./Helpers/smart-contract-abi";
 
 function App() {
     const { dispatch, state } = useContext(Context);
@@ -36,6 +37,11 @@ function App() {
                             type: "SET_CONNECTION_STATUS",
                             payload: true
                         });
+                        const web3 = new Web3(Web3.givenProvider)
+                        const todoList = new web3.eth.Contract(TODO_LIST_ABI, TODO_LIST_ADDRESS)
+                        console.log('todoList', todoList)
+                        const taskCount = await todoList.methods.tasks(0).call();
+                        console.log(taskCount);
                     })
                     .catch((ex) => {
                         console.log(ex)
