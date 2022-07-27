@@ -35,8 +35,8 @@ function App() {
             setTodoTasks(oldArray => [...oldArray, task])
         }
         dispatch({
-            type: "SET_TODO_ITEMS",
-            payload: todoTasks
+            type: "SET_TODO_ITEM_COUNT",
+            payload: taskCount
         });
     }
 
@@ -77,8 +77,8 @@ function App() {
             });
             setTodoTasks([])
             dispatch({
-                type: "SET_TODO_ITEMS",
-                payload: []
+                type: "SET_TODO_ITEM_COUNT",
+                payload: 0
             });
         } catch (ex) {
             console.log(ex)

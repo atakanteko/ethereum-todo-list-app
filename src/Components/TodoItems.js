@@ -5,6 +5,16 @@ import {Context} from "../Context";
 const TodoItems = ({ todoTasks }) => {
     const { state } = useContext(Context);
 
+    const getProperText = (count) => {
+        console.log(count)
+        if (count === 0) {
+            return 'No tasks were added';
+        } else if (count === '1') {
+            return `${count} item`
+        } else {
+            return `${count} items`
+        }
+    }
     return (
         <div>
             <div className='bg-[#181824] px-8 py-8 text-white flex flex-col'>
@@ -33,7 +43,7 @@ const TodoItems = ({ todoTasks }) => {
                                         )
                                     })
                                 }
-                                <li className='pl-2 py-2 border-2 border-[#DE6EA6] text-sm'>5 Items</li>
+                                <li className='pl-2 py-2 border-2 border-[#DE6EA6] text-sm'>{getProperText(state.todoCount)}</li>
                             </ul>
                         </div>
                     </>

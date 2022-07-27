@@ -5,7 +5,7 @@ import { common } from "./reducers/common";
 // initial state
 const initialState = {
     connectionStatus:false,
-    todoItems: [],
+    todoCount: 0,
 };
 
 // create context
