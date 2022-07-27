@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { Context } from "../Context";
 import { shortenWalletAddress } from "../Helpers/filters";
+import TodoItems from "./TodoItems";
 
-export const Card = ({ metamaskConnectionHandler, walletAddress }) => {
+export const Card = ({ metamaskConnectionHandler, walletAddress, todoTasks }) => {
     const { state } = useContext(Context);
 
     return (
@@ -20,33 +21,10 @@ export const Card = ({ metamaskConnectionHandler, walletAddress }) => {
                     <img src={require('../Assets/Images/Icons/copy.svg').default} width={24} height={24} alt='card-image'/>
                 </div>
             }
-            <div className='bg-[#181824] px-8 py-8 text-white'>
-                <form>
-                    <div className='rounded-md overflow-hidden flex flex-row items-center bg-[#25273C]'>
-                        <input type="text" className='w-full h-fit appearance-none text-xl text-white pl-4 bg-transparent border-none focus:outline-none'/>
-                        <div className='bg-[#DE6EA6] h-fit overflow-hidden py-3 px-3'>
-                            <img src={require('../Assets/Images/Icons/submit-arrow.svg').default} width={24} height={24} alt='card-image'/>
-                        </div>
-                    </div>
-                </form>
-                <div className='mt-4 bg-[#25273C]'>
-                    <ul>
-                        <li className='pl-2 py-2 border-b-2 border-[#4840405E] flex flex-row items-center'>
-                            <input type="checkbox"
-                                   value=""
-                                   className="w-6 h-6 mr-2"/>
-                            <span>Create a new Todo</span>
-                        </li>
-                        <li className='pl-2 py-2 border-b-2 border-[#4840405E] flex flex-row items-center'>
-                            <input type="checkbox"
-                                   value=""
-                                   className="w-6 h-6 mr-2"/>
-                            <span>Create a new Todo</span>
-                        </li>
-                        <li className='pl-2 py-2 border-2 border-[#DE6EA6] text-sm'>5 Items</li>
-                    </ul>
-                </div>
-            </div>
+            {
+                state.connectionStatus && <TodoItems todoTasks={todoTasks} />
+            }
+            
             <div className='bg-[#F2F4F7] px-8 py-6 border-t-2'>
                 <button onClick={()=> metamaskConnectionHandler()}
                         className={`${state.connectionStatus ? 'bg-[#DE6EA6]' : 'bg-[#672CD0]'} w-full rounded-md py-2 text-center capitalize text-base text-white font-bold`}>
