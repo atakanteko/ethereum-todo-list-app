@@ -1,12 +1,12 @@
 import React from 'react';
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {Context} from "../Context";
 
-const TodoItems = ({ todoTasks }) => {
-    const { state } = useContext(Context);
+const TodoItems = ({ todoTasks, createTask, toggleCompleted }) => {
 
+    const { state } = useContext(Context);
+    const [task, setTask] = useState('');
     const getProperText = (count) => {
-        console.log(count)
         if (count === 0) {
             return 'No tasks were added';
         } else if (count === '1') {
@@ -15,18 +15,31 @@ const TodoItems = ({ todoTasks }) => {
             return `${count} items`
         }
     }
+
+    const handleSubmit = (event) =>{
+        event.preventDefault();
+        createTask(task)
+        setTask('')
+    }
+
+    const handleCompleted = (id) => {
+        toggleCompleted(id)
+    }
+
     return (
         <div>
             <div className='bg-[#181824] px-8 py-8 text-white flex flex-col'>
                 {
                     todoTasks.length > 0 ?
                     <>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className='rounded-md overflow-hidden flex flex-row items-center bg-[#25273C]'>
-                                <input type="text" className='w-full h-fit appearance-none text-xl text-white pl-4 bg-transparent border-none focus:outline-none'/>
-                                <div className='bg-[#DE6EA6] h-fit overflow-hidden py-3 px-3'>
+                                <input type="text"
+                                       onChange={(e) =>  setTask(e.target.value)}
+                                       className='w-full h-fit appearance-none text-xl text-white pl-4 bg-transparent border-none focus:outline-none'/>
+                                <button onSubmit={()=>handleSubmit} className='bg-[#DE6EA6] h-fit overflow-hidden py-3 px-3'>
                                     <img src={require('../Assets/Images/Icons/submit-arrow.svg').default} width={24} height={24} alt='card-image'/>
-                                </div>
+                                </button>
                             </div>
                         </form>
                         <div className='mt-4 bg-[#25273C]'>
@@ -36,9 +49,11 @@ const TodoItems = ({ todoTasks }) => {
                                         return (
                                             <li key={index} className='pl-2 py-2 border-b-2 border-[#4840405E] flex flex-row items-center'>
                                                 <input type="checkbox"
-                                                    value=""
-                                                    className="w-6 h-6 mr-2"/>
-                                                <span>{todo.content}</span>
+                                                       name={todo.id}
+                                                       defaultChecked={todo.completed}
+                                                       onClick={() => handleCompleted(todo.id)}
+                                                       className="w-6 h-6 mr-2"/>
+                                                <span className={`${todo.completed ? 'line-through' : ''}`}>{todo.content}</span>
                                             </li>
                                         )
                                     })

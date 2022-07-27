@@ -6,13 +6,17 @@ import Web3 from "web3";
 import { TODO_LIST_ABI, TODO_LIST_ADDRESS } from "./Helpers/smart-contract-abi";
 
 function App() {
+    const web3 = new Web3(Web3.givenProvider)
+    const todoList = new web3.eth.Contract(TODO_LIST_ABI, TODO_LIST_ADDRESS)
     const { dispatch, state } = useContext(Context);
     const [walletAddress, setWalletAddress] = useState('')
     const [isMetaMaskInstalled, setIsMetaMaskInstalled] = useState(false)
     const [todoTasks, setTodoTasks] = useState([])
+
     useEffect(() => {
         const connectWalletOnPageLoad = async () => {
             if (localStorage?.getItem('isWalletConnected') === 'true') {
+                setTodoTasks([])
                 connectMetamask()
             }
         }
@@ -26,18 +30,31 @@ function App() {
     }, [isMetaMaskInstalled])
 
     const loadBlockChainData = async () => {
-        const web3 = new Web3(Web3.givenProvider)
-        const todoList = new web3.eth.Contract(TODO_LIST_ABI, TODO_LIST_ADDRESS)
+        setTodoTasks([])
         const taskCount = await todoList.methods.taskCount().call();
         for (let i = 1; i <= taskCount; i++) {
             const task = await todoList.methods.tasks(i).call();
-            console.log(task)
             setTodoTasks(oldArray => [...oldArray, task])
         }
         dispatch({
             type: "SET_TODO_ITEM_COUNT",
             payload: taskCount
         });
+    }
+
+    const createTask = async (task) => {
+        todoList.methods.createTask(task).send({ from: walletAddress })
+            .once('receipt', (receipt) => {
+                console.log(receipt)
+                loadBlockChainData()
+            });
+    }
+    const toggleCompleted = async (todoId) => {
+        todoList.methods.toggleCompleted(todoId).send({ from: walletAddress })
+            .once('receipt', (receipt) => {
+                console.log(receipt)
+                loadBlockChainData()
+            });
     }
 
     const connectMetamask = async () => {
@@ -90,6 +107,8 @@ function App() {
           <Card metamaskConnectionHandler={state.connectionStatus ? disconnect : connectMetamask}
                 walletAddress={walletAddress}
                 todoTasks={todoTasks}
+                createTask={createTask}
+                toggleCompleted={toggleCompleted}
           />
           {
               isMetaMaskInstalled && <div className='absolute top-11 right-5 bg-red-500 py-2 px-2 rounded-md'>

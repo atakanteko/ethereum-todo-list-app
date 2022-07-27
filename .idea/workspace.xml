@@ -4,18 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3198fefd-b7b4-4415-9741-334d5238be36" name="Changes" comment="todo list css design">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/e/1e43fa63aecd2127be034b3fb9d4caa172275714" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/3/23450710a9f65b5365b7a73586503c76f17720e5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/b/2b2cac47471b40894cdebf67b746468a15b4a633" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/7/57b73ae7cf59490ab653b3b9791b042c8e02620c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/0/7030d0b2f71b999ff89a343de08c414af32fc93a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/d/cdb0ab1be5536db81e2f96fc8005545e0cf9b9ee" beforeDir="false" />
+    <list default="true" id="3198fefd-b7b4-4415-9741-334d5238be36" name="Changes" comment="render how much todo is in the list">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/44d41c6d15098efbd554782a3e661c65119069b7" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Card.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/TodoItems.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TodoItems.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Context/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Context/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Context/reducers/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Context/reducers/common.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -116,7 +111,7 @@
       <workItem from="1658926332146" duration="26000" />
       <workItem from="1658926360211" duration="211000" />
       <workItem from="1658927313023" duration="555000" />
-      <workItem from="1658928124880" duration="382000" />
+      <workItem from="1658928124880" duration="4188000" />
     </task>
     <task id="LOCAL-00001" summary="update readme">
       <created>1658918515452</created>
@@ -139,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658922261771</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="render how much todo is in the list">
+      <created>1658928571148</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1658928571148</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +151,7 @@
     <MESSAGE value="update readme" />
     <MESSAGE value="connect smart contract" />
     <MESSAGE value="todo list css design" />
-    <option name="LAST_COMMIT_MESSAGE" value="todo list css design" />
+    <MESSAGE value="render how much todo is in the list" />
+    <option name="LAST_COMMIT_MESSAGE" value="render how much todo is in the list" />
   </component>
 </project>

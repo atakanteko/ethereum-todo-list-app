@@ -3,7 +3,7 @@ import { Context } from "../Context";
 import { shortenWalletAddress } from "../Helpers/filters";
 import TodoItems from "./TodoItems";
 
-export const Card = ({ metamaskConnectionHandler, walletAddress, todoTasks }) => {
+export const Card = ({ metamaskConnectionHandler, walletAddress, todoTasks, createTask, toggleCompleted } ) => {
     const { state } = useContext(Context);
 
     return (
@@ -22,7 +22,7 @@ export const Card = ({ metamaskConnectionHandler, walletAddress, todoTasks }) =>
                 </div>
             }
             {
-                state.connectionStatus && <TodoItems todoTasks={todoTasks} />
+                state.connectionStatus && <TodoItems todoTasks={todoTasks} createTask={createTask} toggleCompleted={toggleCompleted} />
             }
             
             <div className='bg-[#F2F4F7] px-8 py-6 border-t-2'>
